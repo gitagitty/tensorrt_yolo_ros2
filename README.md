@@ -1,4 +1,5 @@
 # ROS2中通过 TensorRT部署YOLOv8 目标检测模型
+原仓库地址https://github.com/wyf-yfw/TensorRT_YOLO_ROS2.git
 
 ## 更新日志
 
