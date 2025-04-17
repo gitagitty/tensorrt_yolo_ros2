@@ -56,7 +56,7 @@ YoloDetector(node)
 
         depth_subscription_ = node->create_subscription<sensor_msgs::msg::Image>(
             depthImageTopic_,
-            10,
+            5,
             std::bind(&CameraInfer::depth_callback, this, std::placeholders::_1)
         );
        
@@ -138,9 +138,10 @@ void CameraInfer::rgb_callback(const sensor_msgs::msg::Image::SharedPtr msg) {
 }
 void CameraInfer::depth_callback(const sensor_msgs::msg::Image::SharedPtr msg)
 {
-   std::lock_guard<std::mutex> lock(mutex_);
-        rgb_image_ = msg;
+    std::lock_guard<std::mutex> lock(mutex_);
+    depth_image_ = msg;
         process_images();
+        // RCLCPP_INFO(node_->get_logger(),"Depth message received");
 }
 void CameraInfer::process_images()
 {
